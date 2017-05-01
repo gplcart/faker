@@ -1,0 +1,8 @@
+{
+    "name": "Faker",
+    "version": "1.0.0-dev",
+    "description": "Lorem Ipsum generator for GPL Cart stores",
+    "author": "Iurii Makukh <gplcart.software@gmail.com>",
+    "core": "1.x",
+    "license": "GNU General Public License 3.0"
+}
