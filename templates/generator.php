@@ -20,7 +20,7 @@
         <div class="col-md-12">
           <div class="btn-toolbar">
             <?php foreach($generators as $id => $model) { ?>
-            <button class="btn btn-default" name="generate" value="<?php echo $this->escape($id); ?>"><?php echo $this->escape($model->getName()); ?></button>
+            <button class="btn btn-default" name="generate" value="<?php echo $this->e($id); ?>"><?php echo $this->e($model->getName()); ?></button>
             <?php } ?>
           </div>
         </div>
