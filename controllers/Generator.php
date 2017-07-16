@@ -46,7 +46,7 @@ class Generator extends BackendController
      */
     protected function submitGenerator()
     {
-        $entity = $this->getPosted('generate');
+        $entity = $this->getPosted('generate', null, true, 'string');
 
         if (empty($entity)) {
             return null;
