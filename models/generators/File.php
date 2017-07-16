@@ -51,7 +51,7 @@ class File extends FakerModuleGenerator
     {
         $directory = GC_UPLOAD_DIR . '/faker';
 
-        if (!file_exists($directory) && !mkdir($directory, 0777)) {
+        if (!file_exists($directory) && !mkdir($directory, 0775)) {
             return false;
         }
 
