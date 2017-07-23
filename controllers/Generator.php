@@ -35,10 +35,25 @@ class Generator extends BackendController
         $this->setTitleEditGenerator();
         $this->setBreadcrumbEditGenerator();
 
-        $this->setData('generators', FakerModuleGenerator::getList());
+        $this->setData('generators', $this->getListGenerator());
 
         $this->submitGenerator();
         $this->outputEditGenerator();
+    }
+
+    /**
+     * Returns an array of generator names
+     * @return array
+     */
+    protected function getListGenerator()
+    {
+        $list = array();
+
+        foreach (FakerModuleGenerator::getList() as $id => $model) {
+            $list[$id] = $model->getName();
+        }
+
+        return gplcart_array_split($list, 4);
     }
 
     /**
@@ -73,12 +88,7 @@ class Generator extends BackendController
      */
     protected function setTitleEditGenerator()
     {
-        $breadcrumb = array(
-            'text' => $this->text('Dashboard'),
-            'url' => $this->url('admin')
-        );
-
-        $this->setBreadcrumb($breadcrumb);
+        $this->setBreadcrumbBackend();
     }
 
     /**
