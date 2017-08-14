@@ -88,7 +88,7 @@ class Generator extends BackendController
      */
     protected function setTitleEditGenerator()
     {
-        $this->setBreadcrumbBackend();
+        $this->setBreadcrumbHome();
     }
 
     /**
