@@ -56,7 +56,7 @@ class File extends FakerModuleGenerator
         }
 
         $topics = (array) $this->config->get('module_faker_image_topics', array('abstract', 'technics'));
-        $image = $this->faker->image($directory, 500, 500, $topics[array_rand($topics)], true, true, $this->faker->word);
+        $image = $this->faker->image($directory, 500, 500, $topics[array_rand($topics)], true);
 
         $field = array(
             'id_key' => '',
