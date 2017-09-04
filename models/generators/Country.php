@@ -109,15 +109,16 @@ class Country extends FakerModuleGenerator
 
     /**
      * Return a random zone ID
-     * @staticvar array|null $zones
      * @return integer
      */
     protected function getZoneId()
     {
         static $zones = null;
+
         if (!isset($zones)) {
             $zones = $this->zone->getList(array('limit' => array(0, 300)));
         }
+
         return (int) array_rand($zones);
     }
 

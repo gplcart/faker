@@ -81,15 +81,16 @@ class Category extends FakerModuleGenerator
 
     /**
      * Returns a random category group
-     * @staticvar array|null $groups
      * @return array
      */
     protected function getCategoryGroup()
     {
         static $groups = null;
+
         if (!isset($groups)) {
             $groups = $this->category_group->getList(array('limit' => array(0, 100)));
         }
+
         return $groups[array_rand($groups)];
     }
 

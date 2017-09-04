@@ -117,12 +117,12 @@ abstract class Generator extends Model
         for ($i = 0; $i < $limit; $i++) {
             $created += (int) $this->create();
         }
+
         return $created;
     }
 
     /**
      * Returns a random array of images from the database
-     * @staticvar array $files
      * @param bool $return_paths
      * @return array
      */
@@ -158,45 +158,48 @@ abstract class Generator extends Model
 
     /**
      * Returns a random store ID
-     * @staticvar array $stores
      * @return integer
      */
     protected function getStoreId()
     {
         static $stores = null;
+
         if (!isset($stores)) {
             $stores = $this->store->getList(array('limit' => array(0, 100)));
         }
+
         return (int) array_rand($stores);
     }
 
     /**
      * Returns a random user ID
-     * @staticvar array $users
      * @return integer
      */
     protected function getUserId()
     {
         static $users = null;
+
         if (!isset($users)) {
             $users = $this->user->getList(array('limit' => array(0, 100)));
         }
+
         return (int) array_rand($users);
     }
 
     /**
      * Returns a random category ID
-     * @staticvar array $categories
      * @param string $type
      * @return integer
      */
     protected function getCategoryId($type)
     {
         static $categories = array();
+
         if (!isset($categories[$type])) {
             $options = array('limit' => array(0, 100), 'type' => $type);
             $categories[$type] = $this->category->getList($options);
         }
+
         return (int) array_rand($categories[$type]);
     }
 

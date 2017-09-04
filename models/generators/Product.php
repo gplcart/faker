@@ -101,15 +101,16 @@ class Product extends FakerModuleGenerator
 
     /**
      * Returns a random product class ID
-     * @staticvar array $classes
      * @return integer
      */
     protected function getProductClassId()
     {
         static $classes = null;
+
         if (!isset($classes)) {
             $classes = $this->product_class->getList(array('limit' => array(0, 100)));
         }
+
         return array_rand($classes);
     }
 

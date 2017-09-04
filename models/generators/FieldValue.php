@@ -84,15 +84,16 @@ class FieldValue extends FakerModuleGenerator
 
     /**
      * Returns a random field ID
-     * @staticvar array|null $data
      * @return integer
      */
     protected function getFieldId()
     {
         static $data = null;
+
         if (!isset($data)) {
             $data = $this->field->getList(array('limit' => array(0, 100)));
         }
+
         return array_rand($data);
     }
 

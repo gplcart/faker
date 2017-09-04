@@ -96,12 +96,12 @@ class ProductClass extends FakerModuleGenerator
 
     /**
      * Returns a random array of field IDs
-     * @staticvar array $fields
      * @return array
      */
     protected function getFields()
     {
         static $fields = null;
+
         if (!isset($fields)) {
             $fields = $this->field->getList(array('limit' => array(0, 300)));
         }
