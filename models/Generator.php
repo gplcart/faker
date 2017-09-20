@@ -225,7 +225,7 @@ abstract class Generator extends Model
 
             try {
                 $instance = Container::get("gplcart\\modules\\faker\\models\\generators\\$id");
-            } catch (\ReflectionException $ex) {
+            } catch (\Exception $ex) {
                 continue;
             }
 
