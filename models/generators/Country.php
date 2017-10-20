@@ -77,10 +77,10 @@ class Country extends FakerModuleGenerator
 
         $data = array(
             'code' => $code,
-            'name' => $countries[$code],
+            'name' => $countries[$code]['name'],
             'format' => $this->getFormat(),
             'zone_id' => $this->getZoneId(),
-            'native_name' => $countries[$code],
+            'native_name' => $countries[$code]['name'],
             'status' => $this->faker->boolean(),
             'weight' => $this->faker->numberBetween(0, 20)
         );
