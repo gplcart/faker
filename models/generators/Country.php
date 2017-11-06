@@ -9,9 +9,18 @@
 
 namespace gplcart\modules\faker\models\generators;
 
-use gplcart\core\models\Zone as ZoneModel,
-    gplcart\core\models\Country as CountryModel,
+// Parent
+use gplcart\core\Config,
+    gplcart\core\Library;
+use gplcart\core\models\User as UserModel,
+    gplcart\core\models\File as FileModel,
+    gplcart\core\models\Store as StoreModel,
+    gplcart\core\models\Alias as AliasModel,
+    gplcart\core\models\Category as CategoryModel,
     gplcart\core\models\Language as LanguageModel;
+// New
+use gplcart\core\models\Zone as ZoneModel,
+    gplcart\core\models\Country as CountryModel;
 use gplcart\modules\faker\models\Generator as FakerModuleGenerator;
 
 /**
@@ -33,24 +42,26 @@ class Country extends FakerModuleGenerator
     protected $country;
 
     /**
-     * Language model instance
-     * @var \gplcart\core\models\Language $language
-     */
-    protected $language;
-
-    /**
+     * 
+     * @param Config $config
+     * @param Library $library
+     * @param LanguageModel $language
+     * @param UserModel $user
+     * @param FileModel $file
+     * @param StoreModel $store
+     * @param AliasModel $alias
+     * @param CategoryModel $category
      * @param ZoneModel $zone
      * @param CountryModel $country
-     * @param LanguageModel $language
      */
-    public function __construct(ZoneModel $zone, CountryModel $country,
-            LanguageModel $language)
+    public function __construct(Config $config, Library $library, LanguageModel $language,
+            UserModel $user, FileModel $file, StoreModel $store, AliasModel $alias,
+            CategoryModel $category, ZoneModel $zone, CountryModel $country)
     {
-        parent::__construct();
+        parent::__construct($config, $library, $language, $user, $file, $store, $alias, $category);
 
         $this->zone = $zone;
         $this->country = $country;
-        $this->language = $language;
     }
 
     /**
@@ -99,7 +110,7 @@ class Country extends FakerModuleGenerator
             foreach ($data as $key => &$value) {
                 if (in_array($key, array('status', 'required'))) {
                     $value = (int) $this->faker->boolean();
-                } else if ($key == 'weight') {
+                } else if ($key === 'weight') {
                     $value = $this->faker->numberBetween(0, 20);
                 }
             }

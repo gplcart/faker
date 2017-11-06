@@ -9,14 +9,33 @@
 
 namespace gplcart\modules\faker\models;
 
-use gplcart\core\Model,
-    gplcart\core\Container;
+use gplcart\core\Config,
+    gplcart\core\Container,
+    gplcart\core\Library;
+use gplcart\core\models\User as UserModel,
+    gplcart\core\models\File as FileModel,
+    gplcart\core\models\Store as StoreModel,
+    gplcart\core\models\Alias as AliasModel,
+    gplcart\core\models\Category as CategoryModel,
+    gplcart\core\models\Language as LanguageModel;
 
 /**
  * Base class for faker generators
  */
-abstract class Generator extends Model
+abstract class Generator
 {
+
+    /**
+     * Config class instance
+     * @var \gplcart\core\Config $config
+     */
+    protected $config;
+
+    /**
+     * Library class instance
+     * @var \gplcart\core\Library
+     */
+    protected $library;
 
     /**
      * Faker class instance
@@ -55,24 +74,33 @@ abstract class Generator extends Model
     protected $alias;
 
     /**
-     * Library class instance
-     * @var \gplcart\core\Library
+     * Language model instance
+     * @var \gplcart\core\models\Language $language
      */
-    protected $library;
+    protected $language;
 
     /**
-     * Constructor
+     * @param Config $config
+     * @param Library $library
+     * @param LanguageModel $language
+     * @param UserModel $user
+     * @param FileModel $file
+     * @param StoreModel $store
+     * @param AliasModel $alias
+     * @param CategoryModel $category
      */
-    public function __construct()
+    public function __construct(Config $config, Library $library, LanguageModel $language,
+            UserModel $user, FileModel $file, StoreModel $store, AliasModel $alias,
+            CategoryModel $category)
     {
-        parent::__construct();
-
-        $this->library = Container::get('gplcart\\core\\Library');
-        $this->user = Container::get('gplcart\\core\\models\\User');
-        $this->file = Container::get('gplcart\\core\\models\\File');
-        $this->store = Container::get('gplcart\\core\\models\\Store');
-        $this->alias = Container::get('gplcart\\core\\models\\Alias');
-        $this->category = Container::get('gplcart\\core\\models\\Category');
+        $this->config = $config;
+        $this->user = $user;
+        $this->file = $file;
+        $this->store = $store;
+        $this->alias = $alias;
+        $this->library = $library;
+        $this->category = $category;
+        $this->language = $language;
 
         $this->setFakerInstance();
     }

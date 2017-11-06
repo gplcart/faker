@@ -9,8 +9,17 @@
 
 namespace gplcart\modules\faker\models\generators;
 
+// Parent
+use gplcart\core\Config,
+    gplcart\core\Library;
+use gplcart\core\models\User as UserModel,
+    gplcart\core\models\File as FileModel,
+    gplcart\core\models\Store as StoreModel,
+    gplcart\core\models\Alias as AliasModel,
+    gplcart\core\models\Category as CategoryModel,
+    gplcart\core\models\Language as LanguageModel;
+// New
 use gplcart\core\models\Field as FieldModel,
-    gplcart\core\models\Language as LanguageModel,
     gplcart\core\models\FieldValue as FieldValueModel;
 use gplcart\modules\faker\models\Generator as FakerModuleGenerator;
 
@@ -33,23 +42,24 @@ class FieldValue extends FakerModuleGenerator
     protected $field_value;
 
     /**
-     * Language model instance
-     * @var \gplcart\core\models\Language $language
-     */
-    protected $language;
-
-    /**
+     * @param Config $config
+     * @param Library $library
+     * @param LanguageModel $language
+     * @param UserModel $user
+     * @param FileModel $file
+     * @param StoreModel $store
+     * @param AliasModel $alias
+     * @param CategoryModel $category
      * @param FieldModel $field
      * @param FieldValueModel $field_value
-     * @param LanguageModel $language
      */
-    public function __construct(FieldModel $field, FieldValueModel $field_value,
-            LanguageModel $language)
+    public function __construct(Config $config, Library $library, LanguageModel $language,
+            UserModel $user, FileModel $file, StoreModel $store, AliasModel $alias,
+            CategoryModel $category, FieldModel $field, FieldValueModel $field_value)
     {
-        parent::__construct();
+        parent::__construct($config, $library, $language, $user, $file, $store, $alias, $category);
 
         $this->field = $field;
-        $this->language = $language;
         $this->field_value = $field_value;
     }
 

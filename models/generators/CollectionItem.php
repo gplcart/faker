@@ -9,9 +9,18 @@
 
 namespace gplcart\modules\faker\models\generators;
 
+// Parent
+use gplcart\core\Config,
+    gplcart\core\Library;
+use gplcart\core\models\User as UserModel,
+    gplcart\core\models\File as FileModel,
+    gplcart\core\models\Store as StoreModel,
+    gplcart\core\models\Alias as AliasModel,
+    gplcart\core\models\Category as CategoryModel,
+    gplcart\core\models\Language as LanguageModel;
+// New
 use gplcart\core\models\Page as PageModel,
     gplcart\core\models\Product as ProductModel,
-    gplcart\core\models\Language as LanguageModel,
     gplcart\core\models\Collection as CollectionModel,
     gplcart\core\models\CollectionItem as CollectionItemModel;
 use gplcart\modules\faker\models\Generator as FakerModuleGenerator;
@@ -47,27 +56,28 @@ class CollectionItem extends FakerModuleGenerator
     protected $collection_item;
 
     /**
-     * Language model instance
-     * @var \gplcart\core\models\Language $language
-     */
-    protected $language;
-
-    /**
+     * @param Config $config
+     * @param Library $library
      * @param LanguageModel $language
+     * @param UserModel $user
+     * @param FileModel $file
+     * @param StoreModel $store
+     * @param AliasModel $alias
+     * @param CategoryModel $category
      * @param CollectionModel $collection
      * @param CollectionItemModel $collection_item
      * @param ProductModel $product
      * @param PageModel $page
      */
-    public function __construct(LanguageModel $language,
-            CollectionModel $collection, CollectionItemModel $collection_item,
-            ProductModel $product, PageModel $page)
+    public function __construct(Config $config, Library $library, LanguageModel $language,
+            UserModel $user, FileModel $file, StoreModel $store, AliasModel $alias,
+            CategoryModel $category, CollectionModel $collection,
+            CollectionItemModel $collection_item, ProductModel $product, PageModel $page)
     {
-        parent::__construct();
+        parent::__construct($config, $library, $language, $user, $file, $store, $alias, $category);
 
         $this->page = $page;
         $this->product = $product;
-        $this->language = $language;
         $this->collection = $collection;
         $this->collection_item = $collection_item;
     }
