@@ -69,8 +69,8 @@ class File extends FakerModuleGenerator
         $image = $this->faker->image($directory, 500, 500, $topics[array_rand($topics)], true);
 
         $field = array(
-            'id_key' => '',
-            'id_value' => '',
+            'entity' => '',
+            'entity_id' => '',
             'title' => $this->faker->text(50),
             'description' => $this->faker->text(100),
             'weight' => $this->faker->numberBetween(0, 20),
