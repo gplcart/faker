@@ -9,16 +9,6 @@
 
 namespace gplcart\modules\faker\models\generators;
 
-// Parent
-use gplcart\core\Config,
-    gplcart\core\Library;
-use gplcart\core\models\User as UserModel,
-    gplcart\core\models\File as FileModel,
-    gplcart\core\models\Store as StoreModel,
-    gplcart\core\models\Alias as AliasModel,
-    gplcart\core\models\Category as CategoryModel,
-    gplcart\core\models\Language as LanguageModel;
-// New
 use gplcart\core\models\Review as ReviewModel,
     gplcart\core\models\Product as ProductModel;
 use gplcart\modules\faker\models\Generator as FakerModuleGenerator;
@@ -42,22 +32,12 @@ class Review extends FakerModuleGenerator
     protected $product;
 
     /**
-     * @param Config $config
-     * @param Library $library
-     * @param LanguageModel $language
-     * @param UserModel $user
-     * @param FileModel $file
-     * @param StoreModel $store
-     * @param AliasModel $alias
-     * @param CategoryModel $category
      * @param ReviewModel $review
      * @param ProductModel $product
      */
-    public function __construct(Config $config, Library $library, LanguageModel $language,
-            UserModel $user, FileModel $file, StoreModel $store, AliasModel $alias,
-            CategoryModel $category, ReviewModel $review, ProductModel $product)
+    public function __construct(ReviewModel $review, ProductModel $product)
     {
-        parent::__construct($config, $library, $language, $user, $file, $store, $alias, $category);
+        parent::__construct();
 
         $this->review = $review;
         $this->product = $product;
@@ -69,7 +49,7 @@ class Review extends FakerModuleGenerator
      */
     public function getName()
     {
-        return $this->language->text('Review');
+        return $this->translation->text('Review');
     }
 
     /**

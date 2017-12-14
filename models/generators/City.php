@@ -9,16 +9,6 @@
 
 namespace gplcart\modules\faker\models\generators;
 
-// Parent
-use gplcart\core\Config,
-    gplcart\core\Library;
-use gplcart\core\models\User as UserModel,
-    gplcart\core\models\File as FileModel,
-    gplcart\core\models\Store as StoreModel,
-    gplcart\core\models\Alias as AliasModel,
-    gplcart\core\models\Category as CategoryModel,
-    gplcart\core\models\Language as LanguageModel;
-// New
 use gplcart\core\models\City as CityModel,
     gplcart\core\models\State as StateModel;
 use gplcart\modules\faker\models\Generator as FakerModuleGenerator;
@@ -42,22 +32,12 @@ class City extends FakerModuleGenerator
     protected $state;
 
     /**
-     * @param Config $config
-     * @param Library $library
-     * @param LanguageModel $language
-     * @param UserModel $user
-     * @param FileModel $file
-     * @param StoreModel $store
-     * @param AliasModel $alias
-     * @param CategoryModel $category
      * @param CityModel $city
      * @param StateModel $state
      */
-    public function __construct(Config $config, Library $library, LanguageModel $language,
-            UserModel $user, FileModel $file, StoreModel $store, AliasModel $alias,
-            CategoryModel $category, CityModel $city, StateModel $state)
+    public function __construct(CityModel $city, StateModel $state)
     {
-        parent::__construct($config, $library, $language, $user, $file, $store, $alias, $category);
+        parent::__construct();
 
         $this->city = $city;
         $this->state = $state;
@@ -69,7 +49,7 @@ class City extends FakerModuleGenerator
      */
     public function getName()
     {
-        return $this->language->text('City');
+        return $this->translation->text('City');
     }
 
     /**

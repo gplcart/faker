@@ -9,16 +9,6 @@
 
 namespace gplcart\modules\faker\models\generators;
 
-// Parent
-use gplcart\core\Config,
-    gplcart\core\Library;
-use gplcart\core\models\User as UserModel,
-    gplcart\core\models\File as FileModel,
-    gplcart\core\models\Store as StoreModel,
-    gplcart\core\models\Alias as AliasModel,
-    gplcart\core\models\Category as CategoryModel,
-    gplcart\core\models\Language as LanguageModel;
-// New
 use gplcart\core\models\Page as PageModel,
     gplcart\core\models\Product as ProductModel,
     gplcart\core\models\Collection as CollectionModel,
@@ -56,25 +46,15 @@ class CollectionItem extends FakerModuleGenerator
     protected $collection_item;
 
     /**
-     * @param Config $config
-     * @param Library $library
-     * @param LanguageModel $language
-     * @param UserModel $user
-     * @param FileModel $file
-     * @param StoreModel $store
-     * @param AliasModel $alias
-     * @param CategoryModel $category
      * @param CollectionModel $collection
      * @param CollectionItemModel $collection_item
      * @param ProductModel $product
      * @param PageModel $page
      */
-    public function __construct(Config $config, Library $library, LanguageModel $language,
-            UserModel $user, FileModel $file, StoreModel $store, AliasModel $alias,
-            CategoryModel $category, CollectionModel $collection,
+    public function __construct(CollectionModel $collection,
             CollectionItemModel $collection_item, ProductModel $product, PageModel $page)
     {
-        parent::__construct($config, $library, $language, $user, $file, $store, $alias, $category);
+        parent::__construct();
 
         $this->page = $page;
         $this->product = $product;
@@ -88,7 +68,7 @@ class CollectionItem extends FakerModuleGenerator
      */
     public function getName()
     {
-        return $this->language->text('Collection item');
+        return $this->translation->text('Collection item');
     }
 
     /**

@@ -9,16 +9,6 @@
 
 namespace gplcart\modules\faker\models\generators;
 
-// Parent
-use gplcart\core\Config,
-    gplcart\core\Library;
-use gplcart\core\models\User as UserModel,
-    gplcart\core\models\File as FileModel,
-    gplcart\core\models\Store as StoreModel,
-    gplcart\core\models\Alias as AliasModel,
-    gplcart\core\models\Category as CategoryModel,
-    gplcart\core\models\Language as LanguageModel;
-// New
 use gplcart\modules\faker\models\Generator as FakerModuleGenerator;
 
 /**
@@ -28,20 +18,11 @@ class File extends FakerModuleGenerator
 {
 
     /**
-     * @param Config $config
-     * @param Library $library
-     * @param LanguageModel $language
-     * @param UserModel $user
-     * @param FileModel $file
-     * @param StoreModel $store
-     * @param AliasModel $alias
-     * @param CategoryModel $category
+     * Constructor
      */
-    public function __construct(Config $config, Library $library, LanguageModel $language,
-            UserModel $user, FileModel $file, StoreModel $store, AliasModel $alias,
-            CategoryModel $category)
+    public function __construct()
     {
-        parent::__construct($config, $library, $language, $user, $file, $store, $alias, $category);
+        parent::__construct();
     }
 
     /**
@@ -50,7 +31,7 @@ class File extends FakerModuleGenerator
      */
     public function getName()
     {
-        return $this->language->text('File');
+        return $this->translation->text('File');
     }
 
     /**

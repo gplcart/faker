@@ -9,16 +9,6 @@
 
 namespace gplcart\modules\faker\models\generators;
 
-// Parent
-use gplcart\core\Config,
-    gplcart\core\Library;
-use gplcart\core\models\User as UserModel,
-    gplcart\core\models\File as FileModel,
-    gplcart\core\models\Store as StoreModel,
-    gplcart\core\models\Alias as AliasModel,
-    gplcart\core\models\Category as CategoryModel,
-    gplcart\core\models\Language as LanguageModel;
-// New
 use gplcart\core\models\Zone as ZoneModel;
 use gplcart\modules\faker\models\Generator as FakerModuleGenerator;
 
@@ -35,21 +25,11 @@ class Zone extends FakerModuleGenerator
     protected $zone;
 
     /**
-     * @param Config $config
-     * @param Library $library
-     * @param LanguageModel $language
-     * @param UserModel $user
-     * @param FileModel $file
-     * @param StoreModel $store
-     * @param AliasModel $alias
-     * @param CategoryModel $category
      * @param ZoneModel $zone
      */
-    public function __construct(Config $config, Library $library, LanguageModel $language,
-            UserModel $user, FileModel $file, StoreModel $store, AliasModel $alias,
-            CategoryModel $category, ZoneModel $zone)
+    public function __construct(ZoneModel $zone)
     {
-        parent::__construct($config, $library, $language, $user, $file, $store, $alias, $category);
+        parent::__construct();
 
         $this->zone = $zone;
     }
@@ -60,7 +40,7 @@ class Zone extends FakerModuleGenerator
      */
     public function getName()
     {
-        return $this->language->text('Zone');
+        return $this->translation->text('Zone');
     }
 
     /**

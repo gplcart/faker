@@ -9,16 +9,6 @@
 
 namespace gplcart\modules\faker\models\generators;
 
-// Parent
-use gplcart\core\Config,
-    gplcart\core\Library;
-use gplcart\core\models\User as UserModel,
-    gplcart\core\models\File as FileModel,
-    gplcart\core\models\Store as StoreModel,
-    gplcart\core\models\Alias as AliasModel,
-    gplcart\core\models\Category as CategoryModel,
-    gplcart\core\models\Language as LanguageModel;
-// New
 use gplcart\core\models\Zone as ZoneModel,
     gplcart\core\models\State as StateModel,
     gplcart\core\models\Country as CountryModel;
@@ -49,23 +39,13 @@ class State extends FakerModuleGenerator
     protected $country;
 
     /**
-     * @param Config $config
-     * @param Library $library
-     * @param LanguageModel $language
-     * @param UserModel $user
-     * @param FileModel $file
-     * @param StoreModel $store
-     * @param AliasModel $alias
-     * @param CategoryModel $category
      * @param ZoneModel $zone
      * @param StateModel $state
      * @param CountryModel $country
      */
-    public function __construct(Config $config, Library $library, LanguageModel $language,
-            UserModel $user, FileModel $file, StoreModel $store, AliasModel $alias,
-            CategoryModel $category, ZoneModel $zone, StateModel $state, CountryModel $country)
+    public function __construct(ZoneModel $zone, StateModel $state, CountryModel $country)
     {
-        parent::__construct($config, $library, $language, $user, $file, $store, $alias, $category);
+        parent::__construct();
 
         $this->zone = $zone;
         $this->state = $state;
@@ -78,7 +58,7 @@ class State extends FakerModuleGenerator
      */
     public function getName()
     {
-        return $this->language->text('State');
+        return $this->translation->text('State');
     }
 
     /**
