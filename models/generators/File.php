@@ -55,7 +55,7 @@ class File extends FakerModuleGenerator
             'title' => $this->faker->text(50),
             'description' => $this->faker->text(100),
             'weight' => $this->faker->numberBetween(0, 20),
-            'path' => str_replace('\\', '/', $this->file->path($image))
+            'path' => str_replace('\\', '/', gplcart_file_relative($image))
         );
 
         return (bool) $this->file->add($field);
