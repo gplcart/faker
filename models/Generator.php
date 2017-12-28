@@ -9,7 +9,9 @@
 
 namespace gplcart\modules\faker\models;
 
+use Exception;
 use gplcart\core\Container;
+use gplcart\core\exceptions\Dependency as DependencyException;
 
 /**
  * Base class for faker generators
@@ -113,7 +115,7 @@ abstract class Generator
     /**
      * Set Faker class instance
      * @return \Faker\Generator
-     * @throws \RuntimeException
+     * @throws DependencyException
      */
     protected function setFakerInstance()
     {
@@ -122,7 +124,8 @@ abstract class Generator
         if (class_exists('Faker\\Factory')) {
             return $this->faker = \Faker\Factory::create();
         }
-        throw new \InvalidArgumentException('Class "Faker\Factory" not found');
+
+        throw new DependencyException('Class "Faker\Factory" not found');
     }
 
     /**
@@ -217,7 +220,12 @@ abstract class Generator
         static $categories = array();
 
         if (!isset($categories[$type])) {
-            $options = array('limit' => array(0, 100), 'type' => $type);
+
+            $options = array(
+                'type' => $type,
+                'limit' => array(0, 100)
+            );
+
             $categories[$type] = $this->category->getList($options);
         }
 
@@ -242,11 +250,12 @@ abstract class Generator
     {
         $generators = array();
         foreach (glob(__DIR__ . "/generators/*.php") as $file) {
+
             $id = strtolower(pathinfo($file, PATHINFO_FILENAME));
 
             try {
                 $instance = Container::get("gplcart\\modules\\faker\\models\\generators\\$id");
-            } catch (\Exception $ex) {
+            } catch (Exception $ex) {
                 continue;
             }
 
@@ -267,10 +276,7 @@ abstract class Generator
     public static function get($name)
     {
         $generators = static::getList();
-        if (empty($generators[$name])) {
-            return null;
-        }
-        return $generators[$name];
+        return empty($generators[$name]) ? null : $generators[$name];
     }
 
 }
