@@ -9,13 +9,13 @@
 
 namespace gplcart\modules\faker;
 
-use gplcart\core\Library,
-    gplcart\core\Module as CoreModule;
+use gplcart\core\Module,
+    gplcart\core\Library;
 
 /**
  * Main class for Faker module
  */
-class Module
+class Main
 {
 
     /**
@@ -31,10 +31,10 @@ class Module
     protected $library;
 
     /**
-     * @param CoreModule $module
+     * @param Module $module
      * @param Library $library
      */
-    public function __construct(CoreModule $module, Library $library)
+    public function __construct(Module $module, Library $library)
     {
         $this->module = $module;
         $this->library = $library;
