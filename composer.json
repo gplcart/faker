@@ -1,12 +1,18 @@
 {
-    "name": "gplcart/faker",
-    "type": "gplcart-module",
-    "description": "Lorem Ipsum generator for GPL Cart stores",
-    "keywords": ["gplcart", "ecommerce", "shopping cart", "gplcart module", "lorem ipsum"],
-    "require": {
-        "gplcart/composer-module-installer": "*",
-        "fzaninotto/faker": "1.6.0"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+  "name": "gplcart/faker",
+  "type": "gplcart-module",
+  "description": "Lorem Ipsum generator for GPL Cart stores",
+  "keywords": [
+    "gplcart",
+    "ecommerce",
+    "shopping cart",
+    "gplcart module",
+    "lorem ipsum"
+  ],
+  "require": {
+    "gplcart/composer-module-installer": "*",
+    "fzaninotto/faker": "1.6.0"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
