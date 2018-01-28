@@ -155,10 +155,7 @@ abstract class Generator
         static $files = null;
 
         if (!isset($files)) {
-            $files = $this->file->getList(array(
-                'file_type' => 'image',
-                'limit' => array(0, 300)
-            ));
+            $files = $this->file->getList(array('file_type' => 'image', 'limit' => array(0, 300)));
         }
 
         if (empty($files)) {

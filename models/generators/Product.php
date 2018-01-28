@@ -9,8 +9,9 @@
 
 namespace gplcart\modules\faker\models\generators;
 
-use gplcart\core\models\Product as ProductModel,
-    gplcart\core\models\ProductClass as ProductClassModel;
+use gplcart\core\models\Convertor as ConvertorModel;
+use gplcart\core\models\Product as ProductModel;
+use gplcart\core\models\ProductClass as ProductClassModel;
 use gplcart\modules\faker\models\Generator as FakerModuleGenerator;
 
 /**
@@ -32,14 +33,22 @@ class Product extends FakerModuleGenerator
     protected $product_class;
 
     /**
+     * Convertor model class instance
+     * @var \gplcart\core\models\Convertor $convertor
+     */
+    protected $convertor;
+
+    /**
      * @param ProductModel $product
      * @param ProductClassModel $product_class
+     * @param ConvertorModel $convertor
      */
-    public function __construct(ProductModel $product, ProductClassModel $product_class)
+    public function __construct(ProductModel $product, ProductClassModel $product_class, ConvertorModel $convertor)
     {
         parent::__construct();
 
         $this->product = $product;
+        $this->convertor = $convertor;
         $this->product_class = $product_class;
     }
 
@@ -58,8 +67,8 @@ class Product extends FakerModuleGenerator
      */
     public function create()
     {
-        $size_units = $this->product->getSizeUnits();
-        $weight_units = $this->product->getWeightUnits();
+        $size_units = $this->convertor->getUnitNames('size');
+        $weight_units = $this->convertor->getUnitNames('weight');
 
         $product = array(
             'user_id' => $this->getUserId(),
