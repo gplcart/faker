@@ -11,7 +11,7 @@ namespace gplcart\modules\faker\models;
 
 use Exception;
 use gplcart\core\Container;
-use gplcart\core\exceptions\Dependency as DependencyException;
+use LogicException;
 
 /**
  * Base class for faker generators
@@ -115,7 +115,7 @@ abstract class Generator
     /**
      * Set Faker class instance
      * @return \Faker\Generator
-     * @throws DependencyException
+     * @throws LogicException
      */
     protected function setFakerInstance()
     {
@@ -125,7 +125,7 @@ abstract class Generator
             return $this->faker = \Faker\Factory::create();
         }
 
-        throw new DependencyException('Class "Faker\Factory" not found');
+        throw new LogicException('Class "Faker\Factory" not found');
     }
 
     /**
