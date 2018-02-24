@@ -10,22 +10,14 @@
 
 namespace gplcart\modules\faker\controllers;
 
-use gplcart\modules\faker\models\Generator as FakerModuleGenerator;
-use gplcart\core\controllers\backend\Controller as BackendController;
+use gplcart\core\controllers\backend\Controller;
+use gplcart\modules\faker\models\Generator as GeneratorModel;
 
 /**
  * Handles incoming requests and outputs data related to Faker module
  */
-class Generator extends BackendController
+class Generator extends Controller
 {
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Route page callback to display the generator page
@@ -49,7 +41,7 @@ class Generator extends BackendController
     {
         $list = array();
 
-        foreach (FakerModuleGenerator::getList() as $id => $model) {
+        foreach (GeneratorModel::getList() as $id => $model) {
             $list[$id] = $model->getName();
         }
 
@@ -67,7 +59,7 @@ class Generator extends BackendController
             return null;
         }
 
-        $generator = FakerModuleGenerator::get($entity);
+        $generator = GeneratorModel::get($entity);
 
         if (empty($generator)) {
             return null;

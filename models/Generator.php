@@ -91,6 +91,18 @@ abstract class Generator
     }
 
     /**
+     * Create a single entity
+     * Require generators to have this method
+     */
+    abstract public function create();
+
+    /**
+     * Returns a generator name
+     * Require generators to have this method
+     */
+    abstract public function getName();
+
+    /**
      * Sets a property
      * @param string $name
      * @param mixed $value
@@ -101,18 +113,6 @@ abstract class Generator
     }
 
     /**
-     * Create a single entity
-     * Require generators to have this method
-     */
-    abstract protected function create();
-
-    /**
-     * Returns a generator name
-     * Require generators to have this method
-     */
-    abstract protected function getName();
-
-    /**
      * Set Faker class instance
      * @return \Faker\Generator
      * @throws LogicException
@@ -121,11 +121,11 @@ abstract class Generator
     {
         $this->library->load('faker');
 
-        if (class_exists('Faker\\Factory')) {
-            return $this->faker = \Faker\Factory::create();
+        if (!class_exists('Faker\\Factory')) {
+            throw new LogicException('Class "Faker\Factory" not found');
         }
 
-        throw new LogicException('Class "Faker\Factory" not found');
+        return $this->faker = \Faker\Factory::create();
     }
 
     /**
@@ -256,7 +256,7 @@ abstract class Generator
                 continue;
             }
 
-            if ($instance instanceof \gplcart\modules\faker\models\Generator) {
+            if ($instance instanceof __CLASS__) {
                 $generators[$id] = $instance;
             }
         }
