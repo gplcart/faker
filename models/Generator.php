@@ -256,7 +256,7 @@ abstract class Generator
                 continue;
             }
 
-            if ($instance instanceof __CLASS__) {
+            if ($instance instanceof Generator) {
                 $generators[$id] = $instance;
             }
         }
