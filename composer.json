@@ -12,6 +12,7 @@
   "require": {
     "fzaninotto/faker": "1.6.0"
   },
+  "license": "GPL-3.0-or-later",
   "minimum-stability": "dev",
   "prefer-stable": true
 }
