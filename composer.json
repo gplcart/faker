@@ -10,7 +10,6 @@
     "lorem ipsum"
   ],
   "require": {
-    "gplcart/composer-module-installer": "*",
     "fzaninotto/faker": "1.6.0"
   },
   "minimum-stability": "dev",
