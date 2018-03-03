@@ -9,9 +9,9 @@
 
 namespace gplcart\modules\faker\models\generators;
 
-use gplcart\core\models\Zone as ZoneModel,
-    gplcart\core\models\State as StateModel,
-    gplcart\core\models\Country as CountryModel;
+use gplcart\core\models\Country as CountryModel;
+use gplcart\core\models\CountryState as CountryStateModel;
+use gplcart\core\models\Zone as ZoneModel;
 use gplcart\modules\faker\models\Generator as FakerModuleGenerator;
 
 /**
@@ -28,7 +28,7 @@ class State extends FakerModuleGenerator
 
     /**
      * State model class instance
-     * @var \gplcart\core\models\State $state
+     * @var \gplcart\core\models\CountryState $state
      */
     protected $state;
 
@@ -40,10 +40,10 @@ class State extends FakerModuleGenerator
 
     /**
      * @param ZoneModel $zone
-     * @param StateModel $state
+     * @param CountryStateModel $state
      * @param CountryModel $country
      */
-    public function __construct(ZoneModel $zone, StateModel $state, CountryModel $country)
+    public function __construct(ZoneModel $zone, CountryStateModel $state, CountryModel $country)
     {
         parent::__construct();
 
@@ -58,7 +58,7 @@ class State extends FakerModuleGenerator
      */
     public function getName()
     {
-        return $this->translation->text('State');
+        return $this->translation->text('Country state');
     }
 
     /**

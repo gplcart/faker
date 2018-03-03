@@ -9,8 +9,8 @@
 
 namespace gplcart\modules\faker\models\generators;
 
-use gplcart\core\models\City as CityModel,
-    gplcart\core\models\State as StateModel;
+use gplcart\core\models\City as CityModel;
+use gplcart\core\models\CountryState as CountryStateModel;
 use gplcart\modules\faker\models\Generator as FakerModuleGenerator;
 
 /**
@@ -27,15 +27,15 @@ class City extends FakerModuleGenerator
 
     /**
      * State model class instance
-     * @var \gplcart\core\models\State $state
+     * @var \gplcart\core\models\CountryState $state
      */
     protected $state;
 
     /**
      * @param CityModel $city
-     * @param StateModel $state
+     * @param CountryStateModel $state
      */
-    public function __construct(CityModel $city, StateModel $state)
+    public function __construct(CityModel $city, CountryStateModel $state)
     {
         parent::__construct();
 
