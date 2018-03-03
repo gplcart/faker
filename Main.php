@@ -54,9 +54,7 @@ class Main
             'type' => 'php',
             'version' => '1.6.0',
             'module' => 'faker',
-            'files' => array(
-                'vendor/autoload.php'
-            )
+            'files' => array(GC_FILE_AUTOLOAD)
         );
     }
 
