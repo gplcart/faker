@@ -10,10 +10,8 @@
     "lorem ipsum"
   ],
   "require": {
-    "gplcart/composer-module-installer": "*",
+    "gplcart/composer-module-installer": "^1",
     "fzaninotto/faker": "1.6.0"
   },
-  "license": "GPL-3.0-or-later",
-  "minimum-stability": "dev",
-  "prefer-stable": true
+  "license": "GPL-3.0-or-later"
 }
