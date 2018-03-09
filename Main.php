@@ -9,8 +9,8 @@
 
 namespace gplcart\modules\faker;
 
-use gplcart\core\Module,
-    gplcart\core\Library;
+use gplcart\core\Library;
+use gplcart\core\Module;
 
 /**
  * Main class for Faker module
@@ -54,7 +54,7 @@ class Main
             'type' => 'php',
             'version' => '1.6.0',
             'module' => 'faker',
-            'files' => array(GC_FILE_AUTOLOAD)
+            'vendor' => 'fzaninotto/faker'
         );
     }
 
