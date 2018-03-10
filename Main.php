@@ -9,7 +9,6 @@
 
 namespace gplcart\modules\faker;
 
-use gplcart\core\Library;
 use gplcart\core\Module;
 
 /**
@@ -25,19 +24,11 @@ class Main
     protected $module;
 
     /**
-     * Library class instance
-     * @var \gplcart\core\Library $library
-     */
-    protected $library;
-
-    /**
      * @param Module $module
-     * @param Library $library
      */
-    public function __construct(Module $module, Library $library)
+    public function __construct(Module $module)
     {
         $this->module = $module;
-        $this->library = $library;
     }
 
     /**
@@ -80,38 +71,6 @@ class Main
     public function hookUserRolePermissions(array &$permissions)
     {
         $permissions['module_faker_generate'] = 'Faker: generate content';
-    }
-
-    /**
-     * Implements hook "module.enable.after"
-     */
-    public function hookModuleEnableAfter()
-    {
-        $this->library->clearCache();
-    }
-
-    /**
-     * Implements hook "module.disable.after"
-     */
-    public function hookModuleDisableAfter()
-    {
-        $this->library->clearCache();
-    }
-
-    /**
-     * Implements hook "module.install.after"
-     */
-    public function hookModuleInstallAfter()
-    {
-        $this->library->clearCache();
-    }
-
-    /**
-     * Implements hook "module.uninstall.after"
-     */
-    public function hookModuleUninstallAfter()
-    {
-        $this->library->clearCache();
     }
 
 }
